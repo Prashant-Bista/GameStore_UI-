@@ -64,7 +64,7 @@ class _HomePageState extends State<HomePage> {
         width: _deviceWidth,
         decoration: BoxDecoration(
             gradient: LinearGradient(
-                colors: [Color.fromRGBO(30, 110, 150, 1), Colors.transparent],
+                colors: [primaryColor, Colors.transparent],
                 begin: Alignment.bottomCenter,
                 end: Alignment.topCenter,
                 stops: [0.65, 1.0])),
@@ -101,7 +101,7 @@ class _HomePageState extends State<HomePage> {
         children: [
           Icon(
             Icons.menu,
-            color: Color.fromRGBO(210, 210, 210, 1),
+            color: secondaryColor,
             size: 30,
           ),
           Row(
@@ -109,7 +109,8 @@ class _HomePageState extends State<HomePage> {
             children: [
               Icon(
                 Icons.search,
-                color: Color.fromRGBO(210, 210, 210, 1),
+                color: secondaryColor,
+
                 size: 30,
               ),
               SizedBox(
@@ -117,7 +118,7 @@ class _HomePageState extends State<HomePage> {
               ),
               Icon(
                 Icons.notifications_none,
-                color: Color.fromRGBO(210, 210, 210, 1),
+                color: secondaryColor,
                 size: 30,
               )
             ],

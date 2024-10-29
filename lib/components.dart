@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:gamestore_ui/data.dart';
+Color primaryColor =Color.fromRGBO(30, 110, 150, 1);
+Color secondaryColor =Color.fromRGBO(30, 110, 150, 1);
+
 class ScrollableGameWidget extends StatelessWidget {
    final double height;
   final double width;

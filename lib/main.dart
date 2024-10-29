@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gamestore_ui/home_page.dart';
+import 'package:gamestore_ui/login_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,10 +18,8 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         brightness: Brightness.dark,
       ),
-      home: HomePage(),
-
+      home: LoginPage(),
     );
-
   }
 }
 
