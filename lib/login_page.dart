@@ -1,9 +1,49 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:gamestore_ui/components.dart';
-class LoginPage extends StatelessWidget {
-  const LoginPage({super.key});
+import 'package:gamestore_ui/home_page.dart';
 
+class AnimatedProfile extends StatefulWidget {
+  const AnimatedProfile({super.key});
+
+  @override
+  State<AnimatedProfile> createState() => _AnimatedProfileState();
+}
+
+class _AnimatedProfileState extends State<AnimatedProfile> with TickerProviderStateMixin{
+  late AnimationController controller;
+
+  @override
+  void initState() {
+    super.initState();
+    controller = AnimationController(
+      duration: const Duration(milliseconds: 400),
+      reverseDuration: const Duration(milliseconds:400),
+      vsync: this,
+    );
+  }
+
+
+  @override
+  void dispose() {
+    super.dispose();
+    controller.dispose();
+  }
+  @override
+  Widget build(BuildContext context) {
+    return LoginPage(controller);
+  }
+}
+
+class LoginPage extends StatelessWidget {
+late AnimationController controller;
+late EnterAnimaition _animaition;
+
+LoginPage(this.controller){
+  controller=controller;
+  _animaition = EnterAnimaition(controller);
+  controller.forward();
+}
   @override
   Widget build(BuildContext context) {
     double _deviceWidth =MediaQuery.of(context).size.width;
@@ -17,17 +57,27 @@ class LoginPage extends StatelessWidget {
         children: [
           Align(
             alignment: Alignment.center,
-            child: CircleAvatar(
-              backgroundColor: Colors.white,
-              radius: _deviceWidth*0.2,
-              child: CircleAvatar(
-                backgroundColor: Colors.lightBlue,
-                radius: _deviceWidth*0.19,
-                backgroundImage: AssetImage("assets/profile_image.png"),
-              ),
+            child: AnimatedBuilder(
+              animation: _animaition.controller,
+              builder: (BuildContext context, Widget? _widget){
+                return Transform(
+                  transform: Matrix4.diagonal3Values(_animaition.circleSize.value, _animaition.circleSize.value, 1),
+                  alignment: Alignment.center,
+                  child: CircleAvatar(
+                    backgroundColor: Colors.white,
+                    radius: _deviceWidth*0.2,
+                    child: CircleAvatar(
+                      backgroundColor: Colors.lightBlue,
+                      radius: _deviceWidth*0.19,
+                      backgroundImage: AssetImage("assets/profile_image.png"),
+                    ),
+                  ),
+                );
+              },
+
             ),
           ),
-          SizedBox(height: _deviceHeight*0.05,),
+        Text("Game Store",style: TextStyle(fontSize: 30,fontFamily: "Source Code Pro Black",color: Colors.white),),
           Form(
               key:formKey,
               child:
@@ -77,9 +127,24 @@ class LoginPage extends StatelessWidget {
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(30)
               ),
-              onPressed: (){}, child: Text("LOGIN",style: TextStyle(color: primaryColor,fontWeight: FontWeight.bold),))
+              onPressed: () async{
+              if (controller.isCompleted) {
+    await controller.reverse();
+    Navigator.pushReplacement(context, FadePageRoute(HomePage()));
+    }}, child: Text("LOGIN",style: TextStyle(color: primaryColor,fontWeight: FontWeight.bold),))
         ],
       ),
     );
   }
 }
+class EnterAnimaition {
+  EnterAnimaition(this.controller) {
+    circleSize = Tween<double>(
+      begin: 0, end: 1,
+    ).animate(CurvedAnimation(parent: controller, curve: Curves.easeIn));
+  }
+  AnimationController controller;
+  late Animation<double> circleSize;
+}
+
+

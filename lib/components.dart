@@ -1,7 +1,11 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:gamestore_ui/data.dart';
+
+import 'login_page.dart';
 Color primaryColor =Color.fromRGBO(30, 110, 150, 1);
-Color secondaryColor =Color.fromRGBO(30, 110, 150, 1);
+Color secondaryColor =Colors.white54;
 
 class ScrollableGameWidget extends StatelessWidget {
    final double height;
@@ -53,4 +57,15 @@ class ScrollableGameWidget extends StatelessWidget {
 
     );
   }
+}
+
+class FadePageRoute extends PageRouteBuilder{
+  final Widget _child;
+  FadePageRoute(this._child):super(transitionsBuilder: (BuildContext context,Animation<double> animation, Animation<double> secondAnimaiton,Widget child){
+    return FadeTransition(opacity: animation,child: child,);
+  },
+  pageBuilder: (BuildContext context, animation, secondAnimation){
+    return _child;
+  });
+
 }

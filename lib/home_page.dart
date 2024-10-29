@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gamestore_ui/components.dart';
+import 'package:gamestore_ui/login_page.dart';
 import 'data.dart';
 
 class HomePage extends StatefulWidget {
@@ -99,10 +100,10 @@ class _HomePageState extends State<HomePage> {
         mainAxisSize: MainAxisSize.max,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Icon(
-            Icons.menu,
+          IconButton(
+            onPressed: (){},
+            icon:Icon(Icons.menu,size: 30,),
             color: secondaryColor,
-            size: 30,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
@@ -116,10 +117,15 @@ class _HomePageState extends State<HomePage> {
               SizedBox(
                 width: 20,
               ),
-              Icon(
-                Icons.notifications_none,
-                color: secondaryColor,
-                size: 30,
+              IconButton(
+                onPressed: (){
+                  Navigator.pushReplacement(context, FadePageRoute(AnimatedProfile()));
+                },
+                icon: Icon(
+                  Icons.logout,
+                  color: secondaryColor,
+                  size: 30,
+                ),
               )
             ],
           )
@@ -177,4 +183,5 @@ class _HomePageState extends State<HomePage> {
           fit: BoxFit.cover,)
     ),);
   }
+
 }

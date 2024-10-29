@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gamestore_ui/components.dart';
 import 'package:gamestore_ui/home_page.dart';
 import 'package:gamestore_ui/login_page.dart';
 
@@ -18,8 +19,14 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         brightness: Brightness.dark,
       ),
-      home: LoginPage(),
-    );
+      home: AnimatedProfile(),
+      onGenerateRoute: (settings){
+        if (settings.name =="/")
+          return MaterialPageRoute(builder: (_)=>AnimatedProfile());
+            }
+          );
+
+
   }
 }
 
