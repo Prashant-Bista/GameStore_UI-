@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:gamestore_ui/components.dart';
 import 'package:gamestore_ui/login_page.dart';
-import 'data.dart';
+import 'game_data.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+class StorePage extends StatefulWidget {
+  const StorePage({super.key});
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<StorePage> createState() => _StorePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _StorePageState extends State<StorePage> {
   late double _deviceWidth;
   late double _deviceHeight;
   late int _selectedGame;
@@ -119,7 +119,7 @@ class _HomePageState extends State<HomePage> {
               ),
               IconButton(
                 onPressed: (){
-                  Navigator.pushReplacement(context, FadePageRoute(AnimatedProfile()));
+                  Navigator.pushReplacement(context, SlidePageRoute(AnimatedProfile()));
                 },
                 icon: Icon(
                   Icons.logout,

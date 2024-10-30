@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:gamestore_ui/components.dart';
-import 'package:gamestore_ui/home_page.dart';
+import 'package:gamestore_ui/GameStore/store_page.dart';
 import 'package:gamestore_ui/login_page.dart';
+import 'package:gamestore_ui/travel/travel_home.dart';
 
 void main() {
   runApp(const MyApp());
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         brightness: Brightness.dark,
       ),
-      home: AnimatedProfile(),
+      home: TravelHome(),
       onGenerateRoute: (settings){
         if (settings.name =="/")
           return MaterialPageRoute(builder: (_)=>AnimatedProfile());

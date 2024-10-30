@@ -1,7 +1,7 @@
 import 'dart:ffi';
 
 import 'package:flutter/material.dart';
-import 'package:gamestore_ui/data.dart';
+import 'package:gamestore_ui/GameStore/game_data.dart';
 
 import 'login_page.dart';
 Color primaryColor =Color.fromRGBO(30, 110, 150, 1);
@@ -68,4 +68,15 @@ class FadePageRoute extends PageRouteBuilder{
     return _child;
   });
 
+}
+class SlidePageRoute extends PageRouteBuilder{
+  final Widget _child;
+  SlidePageRoute(this._child):super(transitionsBuilder:(BuildContext context,Animation<double> animation,Animation<double> secondAnimation,Widget child){
+    final offsetanimation = Tween<Offset>(begin: Offset(-1,0),end: Offset(0,0)).animate(animation);
+    return SlideTransition(position: offsetanimation,child: child,);
+  },
+    pageBuilder:(BuildContext context,animatoin,secondAnimation){
+    return _child;
+    }
+  );
 }

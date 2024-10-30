@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:gamestore_ui/components.dart';
-import 'package:gamestore_ui/home_page.dart';
+import 'package:gamestore_ui/GameStore/store_page.dart';
 
 class AnimatedProfile extends StatefulWidget {
   const AnimatedProfile({super.key});
@@ -69,7 +69,7 @@ LoginPage(this.controller){
                     child: CircleAvatar(
                       backgroundColor: Colors.lightBlue,
                       radius: _deviceWidth*0.19,
-                      backgroundImage: AssetImage("assets/profile_image.png"),
+                      backgroundImage: AssetImage("assets/images/profile_image.png"),
                     ),
                   ),
                 );
@@ -130,7 +130,7 @@ LoginPage(this.controller){
               onPressed: () async{
               if (controller.isCompleted) {
     await controller.reverse();
-    Navigator.pushReplacement(context, FadePageRoute(HomePage()));
+    Navigator.pushReplacement(context, FadePageRoute(StorePage()));
     }}, child: Text("LOGIN",style: TextStyle(color: primaryColor,fontWeight: FontWeight.bold),))
         ],
       ),
